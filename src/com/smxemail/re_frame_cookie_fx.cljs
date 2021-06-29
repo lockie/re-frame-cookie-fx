@@ -70,6 +70,14 @@
 
 (s/def ::sequential-or-map (s/or :list-or-vector sequential? :map map?))
 
+(defn- cookie-options [max-age path domain secure]
+  (let [set-options (goog.net.cookies/SetOptions.)]
+    (set! (.-secure set-options) (boolean secure))
+    (set! (.-domain set-options) domain)
+    (set! (.-path set-options) path)
+    (set! (.-maxAge set-options) max-age)
+    set-options))
+
 ;; An effects handler that actions setting cookies.
 ;;
 ;; To set a cookie supply a map or vector of maps using the following options:
@@ -92,8 +100,7 @@
     (when (= :cljs.spec.alpha/invalid (s/conform ::sequential-or-map options))
       (console :error (s/explain-str ::sequential-or-map options)))
     (cond
-      (sequential? options)
-      (run! cookie-set-effect options)
+      (sequential? options) (run! cookie-set-effect options)
       (map? options)
       (let [{:keys [name value max-age path domain secure on-success on-failure]
              :or   {max-age    -1
@@ -101,6 +108,7 @@
                     on-success [:cookie-set-no-on-success]
                     on-failure [:cookie-set-no-on-failure]}} options
             sname (cljs.core/name name)]
+        
         (cond
           (not (.isValidName goog.net.cookies sname))
           (dispatch (conj on-failure (ex-info options "cookie name fails #goog.net.cookies.isValidName")))
@@ -108,7 +116,7 @@
           (dispatch (conj on-failure (ex-info options "cookie value fails #goog.net.cookies.isValidValue")))
           true
           (try
-            (.set goog.net.cookies sname value {:maxAge max-age :path path :domain domain :secure secure})
+            (.set goog.net.cookies sname value (cookie-options max-age path domain secure))
             (dispatch (conj on-success options))
             (catch :default e
               (dispatch (conj on-failure e)))))))))
