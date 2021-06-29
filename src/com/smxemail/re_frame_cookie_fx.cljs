@@ -108,7 +108,7 @@
           (dispatch (conj on-failure (ex-info options "cookie value fails #goog.net.cookies.isValidValue")))
           true
           (try
-            (.set goog.net.cookies sname value max-age path domain secure)
+            (.set goog.net.cookies sname value {:maxAge max-age :path path :domain domain :secure secure})
             (dispatch (conj on-success options))
             (catch :default e
               (dispatch (conj on-failure e)))))))))
