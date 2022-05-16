@@ -71,7 +71,7 @@
 (s/def ::sequential-or-map (s/or :list-or-vector sequential? :map map?))
 
 (defn- cookie-options [max-age path domain secure]
-  (let [set-options (goog.net.cookies/SetOptions.)]
+  (let [set-options (goog.net.Cookies.SetOptions.)]
     (set! (.-secure set-options) (boolean secure))
     (set! (.-domain set-options) domain)
     (set! (.-path set-options) path)
