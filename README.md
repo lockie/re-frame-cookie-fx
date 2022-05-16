@@ -47,13 +47,6 @@ Besides `:name` and `:value`, you can supply `:on-success` and `:on-failure` han
 well as the usual cookie options including `:max-age`, `:path`, `:domain`, and
 `:secure`. See details and documentation in the source.
 
-Note that if you do not supply `:on-success` or `:on-failure` to `:cookie/set` or
-`:cookie/remove`, the code will default to dispatching to handlers
-`:cookie-set-no-on-success`, `:cookie-set-no-on-failure`,
-`:cookie-remove-no-on-success`, and `:cookie-remove-no-on-failure`. You must supply
-these event handlers.
-
-
 #### Coeffects
 
 To use a coeffect:

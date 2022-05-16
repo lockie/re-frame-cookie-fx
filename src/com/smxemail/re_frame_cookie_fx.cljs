@@ -104,9 +104,7 @@
       (map? options)
       (let [{:keys [name value max-age path domain secure on-success on-failure]
              :or   {max-age    -1
-                    path       "/"
-                    on-success [:cookie-set-no-on-success]
-                    on-failure [:cookie-set-no-on-failure]}} options
+                    path       "/"}} options
             sname (cljs.core/name name)]
         
         (cond
@@ -117,9 +115,11 @@
           true
           (try
             (.set goog.net.cookies sname value (cookie-options max-age path domain secure))
-            (dispatch (conj on-success options))
+            (when on-success
+              (dispatch (conj on-success options)))
             (catch :default e
-              (dispatch (conj on-failure e)))))))))
+              (when on-failure
+                (dispatch (conj on-failure e))))))))))
 
 ;; An effects handler that actions removing cookies.
 ;;
@@ -140,17 +140,17 @@
       (run! cookie-remove-effect options)
       (map? options)
       (let [{:keys [name path domain on-success on-failure]
-             :or   {path       "/"
-                    on-success [:cookie-remove-no-on-success]
-                    on-failure [:cookie-remove-no-on-failure]}} options
+             :or   {path       "/"}} options
             sname (cljs.core/name name)]
         (if (not (.isValidName goog.net.cookies sname))
           (dispatch (conj on-failure (ex-info options "cookie name fails #goog.net.cookies.isValidName")))
           (try
             (.remove goog.net.cookies sname path domain)
-            (dispatch (conj on-success options))
+            (when on-success
+              (dispatch (conj on-success options)))
             (catch :default e
-              (dispatch (conj on-failure e)))))))))
+              (when on-failure
+                (dispatch (conj on-failure e))))))))))
 
 ;; An effects handler that eats all the cookies... Om nom nom nom.
 ;;
