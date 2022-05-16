@@ -1,6 +1,6 @@
 # Cookies Effects Handler for re-frame
 
-> Om Nom Nom Nom - Cookie Monster, Sesame Street
+> Oh cookie, yummy! - KVN, Final Space
 
 Herein a re-frame ["Effects Handler"](https://github.com/Day8/re-frame/wiki/Effectful-Event-Handlers),
 which enables various [cookie](https://en.wikipedia.org/wiki/HTTP_cookie)
