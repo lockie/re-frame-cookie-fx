@@ -106,13 +106,12 @@
              :or   {max-age    -1
                     path       "/"}} options
             sname (cljs.core/name name)]
-        
         (cond
           (not (.isValidName goog.net.cookies sname))
-          (dispatch (conj on-failure (ex-info options "cookie name fails #goog.net.cookies.isValidName")))
+          (dispatch (conj on-failure (ex-info "cookie name fails #goog.net.cookies.isValidName" options)))
           (not (.isValidValue goog.net.cookies value))
-          (dispatch (conj on-failure (ex-info options "cookie value fails #goog.net.cookies.isValidValue")))
-          true
+          (dispatch (conj on-failure (ex-info "cookie value fails #goog.net.cookies.isValidValue" options)))
+          :else
           (try
             (.set goog.net.cookies sname value (cookie-options max-age path domain secure))
             (when on-success
@@ -143,7 +142,7 @@
              :or   {path       "/"}} options
             sname (cljs.core/name name)]
         (if (not (.isValidName goog.net.cookies sname))
-          (dispatch (conj on-failure (ex-info options "cookie name fails #goog.net.cookies.isValidName")))
+          (dispatch (conj on-failure (ex-info "cookie name fails #goog.net.cookies.isValidName" options)))
           (try
             (.remove goog.net.cookies sname path domain)
             (when on-success
