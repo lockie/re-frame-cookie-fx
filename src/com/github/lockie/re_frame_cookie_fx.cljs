@@ -1,4 +1,4 @@
-(ns com.smxemail.re-frame-cookie-fx
+(ns com.github.lockie.re-frame-cookie-fx
   (:require
     [cljs.spec.alpha :as s]
     [goog.net.cookies]

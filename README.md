@@ -10,7 +10,7 @@ operations using [goog.net.Cookies](http://google.github.io/closure-library/api/
 
 ### 1. Add Dependency
 
-[![Clojars Project](https://img.shields.io/clojars/v/com.smxemail/re-frame-cookie-fx.svg)](https://clojars.org/com.smxemail/re-frame-cookie-fx)
+[![Clojars Project](https://img.shields.io/clojars/v/com.github.lockie/re-frame-cookie-fx.svg)](https://clojars.org/com.github.lockie/re-frame-cookie-fx)
 
 ### 2. Registration & Use
 
@@ -24,7 +24,7 @@ First, add this `require` to the `ns`:
 (ns app.handlers
   (:require
     ...
-    [com.smxemail.re-frame-cookie-fx]    ;; <-- add this
+    [com.github.lockie.re-frame-cookie-fx]    ;; <-- add this
     ...))
 ```
 
@@ -67,8 +67,12 @@ Other supported coeffects include the below which are documented in the source:
 
 ## Authors
 
-- [Isaac Johnston](@superstructor)
-- [Abhishek Reddy](@arbscht)
+- [Isaac Johnston](https://github.com/superstructor)
+- [Abhishek Reddy](https://github.com/radhikalism)
+- [David Goldfarb](https://github.com/deg)
+- [Alex Watkinson](https://github.com/Almerc)
+- [Brian Gorman](https://github.com/briangorman)
+- [Andrew Kravchuk](https://github.com/lockie)
 
 ## License
 

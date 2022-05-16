@@ -1,6 +1,6 @@
-(defproject com.smxemail/re-frame-cookie-fx "0.0.3-ELIT"
+(defproject com.github.lockie/re-frame-cookie-fx "0.0.3-SNAPSHOT"
   :description "A re-frame effects handler for setting or deleting cookies."
-  :url "https://github.com/SMX-LTD/re-frame-cookie-fx.git"
+  :url "https://github.com/lockie/re-frame-cookie-fx"
   :license {:name         "Eclipse Public License - v 1.0"
             :url          "http://www.eclipse.org/legal/epl-v10.html"
             :distribution :repo
