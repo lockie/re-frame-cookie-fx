@@ -1,4 +1,4 @@
-(defproject com.github.lockie/re-frame-cookie-fx "0.0.3-SNAPSHOT"
+(defproject com.github.lockie/re-frame-cookie-fx "0.0.3"
   :description "A re-frame effects handler for setting or deleting cookies."
   :url "https://github.com/lockie/re-frame-cookie-fx"
   :license {:name         "Eclipse Public License - v 1.0"
